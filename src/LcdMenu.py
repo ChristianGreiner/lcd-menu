@@ -1,5 +1,4 @@
-from anytree import NodeMixin, RenderTree, AnyNode
-
+from anytree import NodeMixin
 
 class MenuItem(NodeMixin):
     scene = None
@@ -37,7 +36,6 @@ class LcdMainMenu(NodeMixin):
 
     def __init__(self, title, children = None):
         super(LcdMainMenu, self).__init__()
-        self.isRoot = True
         if title:
             self.title = title
         if children:
@@ -47,6 +45,12 @@ class LcdMainMenu(NodeMixin):
 
     def update(self):
         pass
+
+    def navigate_up(self):
+        self.horizontalCounter = 0
+        if self.currentNode.parent:
+            self.currentNode = self.currentNode.parent
+            return self.currentNode
 
     def navigate_down(self):
         self.horizontalCounter = 0
