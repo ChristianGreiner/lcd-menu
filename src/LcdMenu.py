@@ -58,6 +58,7 @@ class LcdMainMenu(MenuItem):
         if self.currentNode.parent:
             if not self.currentNode.parent.isRoot:
                 self.currentNode = self.currentNode.parent
+                self.depthCounter -= 1
 
             return self.currentNode
 
@@ -66,6 +67,7 @@ class LcdMainMenu(MenuItem):
         if self.currentNode.children:
             if len(self.currentNode.children) > 0:
                 self.currentNode = self.currentNode.children[0]
+                self.depthCounter += 1
 
         return self.currentNode
 
