@@ -1,10 +1,9 @@
 from LcdMenu import LcdMainMenu, MenuItem, LcdScene
-from anytree import NodeMixin, RenderTree, Walker
+from anytree import RenderTree
 
-menu = None
 
 def main():
-    menu = LcdMainMenu('MainMenu', children= [
+    menu = LcdMainMenu('MainMenu', children=[
         MenuItem('System', children=[
             MenuItem('Network', children=[
                 MenuItem('IP-Stuff', children=[
@@ -20,7 +19,6 @@ def main():
     for pre, _, node in RenderTree(menu):
         treestr = u"%s%s" % (pre, node.title)
         print(treestr.ljust(8))
-
 
     while True:
         string = str(input())
@@ -40,6 +38,7 @@ def main():
             item = menu.navigate_up()
             if item:
                 print("/\ " + item.title)
+
 
 if __name__ == '__main__':
     main()
